@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from '@kafein/services';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService, LoginDto } from '@kafein/services';
+import { LocalStorageUtils } from '@kafein/utils';
 
 @Component({
   selector: 'kafein-login',
@@ -7,13 +10,25 @@ import { AuthService } from '@kafein/services';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  loginFormGroup: FormGroup = new FormGroup({
+    username: new FormControl('admin', { validators: [Validators.required] }),
+    password: new FormControl('1234', { validators: [Validators.required] }),
+    remember: new FormControl(false),
+  });
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   login(): void {
-    this.authService.login({ username: 'admin', password: '1234' }).subscribe(loginResponse => {
-      localStorage.setItem('access_token', JSON.stringify(loginResponse.token));
-    });
+    this.loginFormGroup.updateValueAndValidity();
+
+    if (this.loginFormGroup.valid) {
+      const loginDto = this.loginFormGroup.value as LoginDto;
+
+      this.authService.login(loginDto).subscribe(loginResponse => {
+        LocalStorageUtils.setAccessToken(loginResponse.token);
+        this.router.navigateByUrl('/');
+      });
+    }
   }
 }

@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable, Optional } from '@angular/core';
+import { Router } from '@angular/router';
 import { Config } from '@kafein/data';
 import { createHttpParams } from '@kafein/utils';
 import { Observable } from 'rxjs';
@@ -9,11 +10,10 @@ import { API_SERVICE_CONFIG_TOKEN } from './types/di';
 @Injectable()
 export abstract class BaseService {
 
-  defaultHeaders: HttpHeaders = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
-
   public constructor(
     private _httpClient: HttpClient,
     @Optional() @Inject(API_SERVICE_CONFIG_TOKEN) private readonly config: ApiServiceConfig | null,
+    public router: Router,
   ) {
   }
 
@@ -35,9 +35,9 @@ export abstract class BaseService {
 
   protected post<T>(url: string, body?: unknown, params?: HttpParams): Observable<T> {
     if (params) {
-      return this._httpClient.post<T>(this.getFullPath(url), body, { params, headers: this.defaultHeaders });
+      return this._httpClient.post<T>(this.getFullPath(url), body, { params });
     } else {
-      return this._httpClient.post<T>(this.getFullPath(url), body, {headers: this.defaultHeaders});
+      return this._httpClient.post<T>(this.getFullPath(url), body);
     }
   }
 

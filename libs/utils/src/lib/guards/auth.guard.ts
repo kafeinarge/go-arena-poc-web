@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, Router } from '@angular/router';
+import { LocalStorageUtils } from '../other';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor(
-    private router: Router
-  ) {
+  constructor(private router: Router) {
   }
 
   canActivate() {
@@ -17,8 +16,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   private isAuthenticated(): boolean {
-    const isAuthenticated = true;
-    if (!isAuthenticated) {
+    const accessToken = LocalStorageUtils.getAccessToken();
+    if (!accessToken) {
       this.router.navigate(['/login']);
       return false;
     }

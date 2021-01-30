@@ -1,0 +1,22 @@
+.login-logo {
+  margin: 1.5rem;
+  width: 150px;
+}
+
+.login-title {
+  font-size: 20px;
+}
+
+.login-form-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: whitesmoke;
+}
+
+.login-form {
+  max-width: 600px;
+}

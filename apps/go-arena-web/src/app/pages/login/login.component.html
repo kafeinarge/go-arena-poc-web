@@ -1,1 +1,26 @@
-<button (click)='login()'>LOGIN</button>
+<div class='login-form-container'>
+  <img alt='logo' class='login-logo' src='assets/turkcell-logo.jpg'>
+
+  <p class='login-title'>Go Arena Backoffice</p>
+
+  <form (ngSubmit)='login()' [formGroup]='loginFormGroup' class='login-form' nz-form>
+    <nz-form-item>
+      <nz-form-control nzErrorTip='Please input your username!'>
+        <nz-input-group nzPrefixIcon='user'>
+          <input formControlName='username' nz-input placeholder='Username' type='text' />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip='Please input your Password!'>
+        <nz-input-group nzPrefixIcon='lock'>
+          <input formControlName='password' nz-input placeholder='Password' type='password' />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <div class='mb-3 text-center' nz-row>
+      <a class='ant-btn-link m-auto'>Forgot password</a>
+    </div>
+    <button nzType='primary' class='w-100 mb-4' nz-button>Log in</button>
+  </form>
+</div>

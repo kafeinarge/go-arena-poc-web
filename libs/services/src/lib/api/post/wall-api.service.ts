@@ -20,30 +20,30 @@ export class WallApiService extends BaseService {
   }
 
   allPosts(): Observable<Array<PostModel>> {
-    return this.get<Array<PostModel>>('allPosts')
+    return this.get<Array<PostModel>>('all')
       .pipe(
-        catchError(err => ErrorHandlingUtils.handle(err))
+        catchError(err => ErrorHandlingUtils.handle(err)),
       );
   }
 
   deleteOnePost(productId: string): Observable<null> {
     return this.delete<null>(`${ productId }`)
       .pipe(
-        catchError(err => ErrorHandlingUtils.handle(err))
+        catchError(err => ErrorHandlingUtils.handle(err)),
       );
   }
 
   savePost(productModel: PostModel): Observable<PostModel> {
     return this.post<PostModel>('', productModel)
       .pipe(
-        catchError(err => ErrorHandlingUtils.handle(err))
+        catchError(err => ErrorHandlingUtils.handle(err)),
       );
   }
 
   updatePost(productModel: PostModel): Observable<PostModel> {
     return this.put<PostModel>(`${ productModel.id }`, productModel)
       .pipe(
-        catchError(err => ErrorHandlingUtils.handle(err))
+        catchError(err => ErrorHandlingUtils.handle(err)),
       );
   }
 }

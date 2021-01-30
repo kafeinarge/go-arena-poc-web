@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
+import { LocalStorageUtils } from '../other';
 
 @Injectable()
 export class LoginGuard implements CanActivate {
-  constructor(
-    private router: Router
-  ) {
+  constructor(private router: Router) {
   }
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    // If user is already authenticated, navigate to dashboard.
-    const isAuthenticated = true;
-    if (isAuthenticated) {
-      this.router.navigate(['/']);
+  canActivate() {
+    // If user already has token, navigate to dashboard.
+    const accessToken = LocalStorageUtils.getAccessToken();
+    if (accessToken) {
+      this.router.navigate(['/dashboard']);
       return false;
     }
     return true;
