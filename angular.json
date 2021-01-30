@@ -18,9 +18,17 @@
             "aot": true,
             "assets": [
               "apps/go-arena-web/src/favicon.ico",
-              "apps/go-arena-web/src/assets"
+              "apps/go-arena-web/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
-            "styles": ["apps/go-arena-web/src/styles.scss"],
+            "styles": [
+              "apps/go-arena-web/src/theme.less",
+              "apps/go-arena-web/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -81,7 +89,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/go-arena-web"],
+          "outputs": [
+            "coverage/apps/go-arena-web"
+          ],
           "options": {
             "jestConfig": "apps/go-arena-web/jest.config.js",
             "passWithNoTests": true
@@ -110,7 +120,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/go-arena-web-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/go-arena-web-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -123,12 +135,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/services/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/services/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/services"],
+          "outputs": [
+            "coverage/libs/services"
+          ],
           "options": {
             "jestConfig": "libs/services/jest.config.js",
             "passWithNoTests": true
@@ -136,13 +152,17 @@
         },
         "build": {
           "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/services",
             "tsConfig": "libs/services/tsconfig.lib.json",
             "packageJson": "libs/services/package.json",
             "main": "libs/services/src/index.ts",
-            "assets": ["libs/services/*.md"]
+            "assets": [
+              "libs/services/*.md"
+            ]
           }
         }
       }
@@ -155,12 +175,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/data/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/data/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/data"],
+          "outputs": [
+            "coverage/libs/data"
+          ],
           "options": {
             "jestConfig": "libs/data/jest.config.js",
             "passWithNoTests": true
@@ -168,13 +192,17 @@
         },
         "build": {
           "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/data",
             "tsConfig": "libs/data/tsconfig.lib.json",
             "packageJson": "libs/data/package.json",
             "main": "libs/data/src/index.ts",
-            "assets": ["libs/data/*.md"]
+            "assets": [
+              "libs/data/*.md"
+            ]
           }
         }
       }
@@ -187,12 +215,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/utils/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/utils/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils"],
+          "outputs": [
+            "coverage/libs/utils"
+          ],
           "options": {
             "jestConfig": "libs/utils/jest.config.js",
             "passWithNoTests": true
@@ -200,19 +232,24 @@
         },
         "build": {
           "builder": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/utils",
             "tsConfig": "libs/utils/tsconfig.lib.json",
             "packageJson": "libs/utils/package.json",
             "main": "libs/utils/src/index.ts",
-            "assets": ["libs/utils/*.md"]
+            "assets": [
+              "libs/utils/*.md"
+            ]
           }
         }
       }
     }
   },
   "cli": {
+    "analytics": "4bfd78a1-adad-4d43-9b9f-45b3f11c7eae",
     "defaultCollection": "@nrwl/angular"
   },
   "schematics": {
