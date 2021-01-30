@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "projects": {
+    "go-arena-web": {
+      "projectType": "application",
+      "root": "apps/go-arena-web",
+      "sourceRoot": "apps/go-arena-web/src",
+      "prefix": "kafein",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/go-arena-web",
+            "index": "apps/go-arena-web/src/index.html",
+            "main": "apps/go-arena-web/src/main.ts",
+            "polyfills": "apps/go-arena-web/src/polyfills.ts",
+            "tsConfig": "apps/go-arena-web/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/go-arena-web/src/favicon.ico",
+              "apps/go-arena-web/src/assets"
+            ],
+            "styles": ["apps/go-arena-web/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/go-arena-web/src/environments/environment.ts",
+                  "with": "apps/go-arena-web/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "go-arena-web:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "go-arena-web:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "go-arena-web:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/go-arena-web/src/**/*.ts",
+              "apps/go-arena-web/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/go-arena-web"],
+          "options": {
+            "jestConfig": "apps/go-arena-web/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "go-arena-web-e2e": {
+      "root": "apps/go-arena-web-e2e",
+      "sourceRoot": "apps/go-arena-web-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/go-arena-web-e2e/cypress.json",
+            "tsConfig": "apps/go-arena-web-e2e/tsconfig.e2e.json",
+            "devServerTarget": "go-arena-web:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "go-arena-web:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/go-arena-web-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "go-arena-web"
+}
