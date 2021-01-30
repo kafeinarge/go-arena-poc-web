@@ -1,0 +1,49 @@
+{
+	"variables": [],
+	"info": {
+		"name": "go-poc",
+		"_postman_id": "ba7baaa1-05a4-0024-e204-081507ae4f66",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://167.172.180.49:8765/wall-service/upload",
+			"request": {
+				"url": "http://167.172.180.49:8765/wall-service/upload",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjEyMzYyNDUxfQ.3tj0ftXG-MguTQJlwxLZ-5OJwBMAsHsFlynbPNe5lflJBzPp1qf6QhDiIrPAvjwsNp-zlRYqwnU6t8EUaOCVdA",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"value": "",
+							"description": "",
+							"type": "file"
+						},
+						{
+							"key": "text",
+							"value": "Deneme",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
