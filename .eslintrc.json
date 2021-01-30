@@ -15,7 +15,8 @@
               { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
             ]
           }
-        ]
+        ],
+        "comma-dangle": ["warn", "always-multiline"]
       }
     },
     {

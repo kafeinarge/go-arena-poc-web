@@ -17,7 +17,8 @@
         "@angular-eslint/component-selector": [
           "error",
           { "type": "element", "prefix": "kafein", "style": "kebab-case" }
-        ]
+        ],
+        "comma-dangle": ["warn", "always-multiline"]
       }
     },
     {

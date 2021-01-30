@@ -7,9 +7,7 @@ import { WallApiService } from './wall-api.service';
 import { WallFacadeService } from './wall-facade.service';
 
 @NgModule({
-  declarations: [],
   imports: [
-    CommonModule,
     HttpClientModule
   ],
   providers: [WallFacadeService, WallApiService]

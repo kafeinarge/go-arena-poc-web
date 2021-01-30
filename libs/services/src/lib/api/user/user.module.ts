@@ -9,7 +9,6 @@ import { UserFacadeService } from './user-facade.service';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
     HttpClientModule
   ],
   providers: [UserFacadeService, UserApiService]
