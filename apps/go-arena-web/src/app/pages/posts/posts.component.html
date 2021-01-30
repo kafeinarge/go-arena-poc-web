@@ -1,0 +1,4 @@
+POSTS
+<div *ngIf='posts?.length'>
+  <kafein-post *ngFor='let post of posts' [post]='post'></kafein-post>
+</div>
