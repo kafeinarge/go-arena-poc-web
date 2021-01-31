@@ -1,29 +1,49 @@
-<nz-card class='my-4' nzHoverable style="width:80%" [nzCover]="coverTemplate">
-  <nz-card-meta [nzTitle]="post.user.name || 'username1234'" [nzDescription]="descriptionTemplate"></nz-card-meta>
+<nz-card [nzCover]='coverTemplate' class='my-4' nzHoverable style='width:80%'>
+  <nz-card-meta [nzDescription]='descriptionTemplate' [nzTitle]="post.user.name || 'username1234'"></nz-card-meta>
 </nz-card>
 <ng-template #coverTemplate>
-  <img nz-image [nzSrc]="post?.preview" [nzFallback]="fallbackImage" alt="post-image" (click)='imagePreview(post.preview)'/>
+  <img (click)='imagePreview(post.preview)' [nzFallback]='fallbackImage' [nzSrc]='post?.preview' alt='post-image' nz-image />
 </ng-template>
 
 <ng-template #descriptionTemplate>
   <p>{{post.text || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pretium lacus et lectus ultricies, eu egestas tellus elementum. Integer at mi sit amet tortor dictum vehicula. '}}</p>
-  <div class='d-flex justify-content-around'>
+  <div class='d-flex justify-content-around' *ngIf='showApprovalButtons'>
     <ng-container *ngIf='approveButtonType === ApproveButtonType.ICON; then iconApproveButtons else textApproveButtons'></ng-container>
   </div>
 </ng-template>
 
-<ng-template #iconApproveButtons>
-  <button nz-button nzType="danger" nzSize="large" nzShape="circle">
-    <i nz-icon nzType="close" nzTheme="outline"></i>
+<ng-template #textApproveButtons>
+  <button
+    (nzOnConfirm)='sendApprovalRequest(post.id, ApprovalEnum.DECLINED)'
+    nz-button
+    nz-popconfirm
+    nzDanger
+    nzPopconfirmPlacement='bottom'
+    nzPopconfirmTitle='Are you sure to decline this post?'
+    nzType='primary'
+  >
+    Decline
   </button>
 
-  <button nz-button nzType="primary" style='background-color: green' nzSize="large" nzShape="circle">
-    <i nz-icon nzType="check" nzTheme="outline"></i>
+  <button
+    nz-button
+    nzGhost
+    nzType='primary'
+    nz-popconfirm
+    nzPopconfirmTitle="Are you sure to approve this post?"
+    nzPopconfirmPlacement="bottom"
+    (nzOnConfirm)="sendApprovalRequest(post.id, ApprovalEnum.APPROVED)"
+  >
+    Approve
   </button>
 </ng-template>
 
-<ng-template #textApproveButtons>
-  <button nz-button nzType="primary" nzDanger>Decline</button>
+<ng-template #iconApproveButtons>
+  <button nz-button nzShape='circle' nzSize='large' nzType='danger'>
+    <i nz-icon nzTheme='outline' nzType='close'></i>
+  </button>
 
-  <button nz-button nzType="primary" nzGhost>Approve</button>
+  <button nz-button nzShape='circle' nzSize='large' nzType='primary' style='background-color: green'>
+    <i nz-icon nzTheme='outline' nzType='check'></i>
+  </button>
 </ng-template>

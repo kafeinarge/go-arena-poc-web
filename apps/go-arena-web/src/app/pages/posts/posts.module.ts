@@ -8,6 +8,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { PostComponent } from '../../components/post/post.component';
 import { PostsComponent } from './posts.component';
@@ -32,6 +33,7 @@ import { PostsComponent } from './posts.component';
         path: '', component: PostsComponent,
       },
     ]),
+    NzPopconfirmModule,
   ],
 })
 export class PostsModule {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PaginationModel, PostModel } from '@kafein/data';
+import { ApprovalEnum, PaginationModel, PostModel } from '@kafein/data';
 import { Observable } from 'rxjs';
 import { WallApiService } from './wall-api.service';
 
@@ -22,5 +22,9 @@ export class WallFacadeService {
 
   updatePost(productDto: PostModel) {
     return this.wallApiService.updatePost(productDto);
+  }
+
+  postApproval(postId: string, approvalType: ApprovalEnum): Observable<PostModel> {
+    return this.wallApiService.postApproval(postId, approvalType);
   }
 }

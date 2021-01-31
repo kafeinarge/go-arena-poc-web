@@ -8,6 +8,7 @@ import { AuthGuard, LoginGuard } from '@kafein/utils';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzNotificationServiceModule } from 'ng-zorro-antd/notification';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,7 @@ registerLocaleData(en);
     LoginModule,
     NzLayoutModule,
     NzDropDownModule,
+    NzNotificationServiceModule,
     KafeinApiModule.forRoot({
       environment,
     }),

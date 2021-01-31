@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { PostModel } from '@kafein/data';
+import { ApprovalEnum, PostModel } from '@kafein/data';
+import { WallFacadeService } from '@kafein/services';
 import { NzImage, NzImageService } from 'ng-zorro-antd/image';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { environment } from '../../../environments/environment';
 import { ApproveButtonType } from './models/approve-button-type';
 
@@ -12,12 +14,20 @@ import { ApproveButtonType } from './models/approve-button-type';
 })
 export class PostComponent implements OnInit {
   ApproveButtonType = ApproveButtonType;
+  ApprovalEnum = ApprovalEnum;
   size: string;
   fallbackImage: string;
+  showApprovalButtons = true;
+
   @Input() post: PostModel;
   @Input() approveButtonType = ApproveButtonType.TEXT;
 
-  constructor(private nzImageService: NzImageService, private domSanitizer: DomSanitizer) {
+  constructor(
+    private nzImageService: NzImageService,
+    private domSanitizer: DomSanitizer,
+    private wallFacadeService: WallFacadeService,
+    private notification: NzNotificationService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -31,5 +41,14 @@ export class PostComponent implements OnInit {
       width: '40vw',
     };
     this.nzImageService.preview([nzImage]);
+  }
+
+  sendApprovalRequest(postId: string, approvalType: ApprovalEnum): void {
+    this.wallFacadeService.postApproval(postId, approvalType).subscribe(
+      () => {
+        this.notification.success(`Post ${ approvalType.toLocaleLowerCase() } successfully`, null);
+        this.showApprovalButtons = false;
+      },
+    );
   }
 }

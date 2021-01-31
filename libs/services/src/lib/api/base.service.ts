@@ -3,6 +3,7 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import { Router } from '@angular/router';
 import { Config } from '@kafein/data';
 import { createHttpParams } from '@kafein/utils';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Observable } from 'rxjs';
 import { ApiServiceConfig, DEFAULT_BASE_URL } from './types';
 import { API_SERVICE_CONFIG_TOKEN } from './types/di';
@@ -14,6 +15,7 @@ export abstract class BaseService {
     private _httpClient: HttpClient,
     @Optional() @Inject(API_SERVICE_CONFIG_TOKEN) private readonly config: ApiServiceConfig | null,
     public router: Router,
+    public notificationService: NzNotificationService,
   ) {
   }
 
