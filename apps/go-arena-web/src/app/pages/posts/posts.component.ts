@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PaginationModel, PostModel } from '@kafein/data';
 import { WallFacadeService } from '@kafein/services';
@@ -11,10 +10,14 @@ import { WallFacadeService } from '@kafein/services';
 export class PostsComponent implements OnInit {
   posts: PaginationModel<Array<PostModel>>;
 
-  constructor(private wallFacadeService: WallFacadeService, private httpClient: HttpClient) {
+  constructor(private wallFacadeService: WallFacadeService) {
   }
 
   ngOnInit() {
     this.wallFacadeService.allPostsPageable().subscribe(allPosts => this.posts = allPosts);
+  }
+
+  pageIndexChange(pageNumber: number): void {
+    this.wallFacadeService.allPostsPageable(pageNumber).subscribe(allPosts => this.posts = allPosts);
   }
 }

@@ -8,8 +8,8 @@ import { BaseService } from '../base.service';
 
 @Injectable()
 export class WallApiService extends BaseService {
-  page = 0;
-  size = 10;
+  pageNo = 0;
+  pageSize = 12;
 
   getHttpParams(): HttpParams {
     return new HttpParams();
@@ -20,7 +20,7 @@ export class WallApiService extends BaseService {
   }
 
   allPostsPageable(): Observable<PaginationModel<Array<PostModel>>> {
-    return this.get<PaginationModel<Array<PostModel>>>(`all?size=${this.size}&page=${this.page}`)
+    return this.get<PaginationModel<Array<PostModel>>>(`all?pageSize=${this.pageSize}&pageNo=${this.pageNo}`)
       .pipe(
         catchError(err => ErrorHandlingUtils.handle(err, this.notificationService)),
       );

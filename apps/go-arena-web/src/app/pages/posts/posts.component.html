@@ -1,7 +1,10 @@
-<div class='row'>
+<div class="row">
   <kafein-post
     *ngFor='let post of posts?.content' [post]='post'
     class='ant-col-xl-6 ant-col-lg-8 ant-col-md-12 ant-col-sm-24'
   ></kafein-post>
 </div>
 
+<div class="row justify-content-center mt-4" *ngIf='posts?.content.length > 0'>
+  <nz-pagination [nzPageIndex]="posts.number + 1" [nzPageSize]="posts.numberOfElements" [nzTotal]="posts.totalElements" (nzPageIndexChange)="pageIndexChange($event)"></nz-pagination>
+</div>

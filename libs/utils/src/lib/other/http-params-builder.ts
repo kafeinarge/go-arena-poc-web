@@ -18,8 +18,8 @@ export class HttpParamsBuilder {
   setPageableParams(pageableParams: any): HttpParamsBuilder {
     if (pageableParams) {
       this.httpParams = this.httpParams
-        .append('page', `${ pageableParams?.page }`)
-        .append('size', `${ pageableParams?.size }`);
+        .append('pageNo', `${ pageableParams?.pageNo }`)
+        .append('pageSize', `${ pageableParams?.pageSize }`);
     }
     return this;
   }
