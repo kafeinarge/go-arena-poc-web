@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { PostModel } from '@kafein/data'
+import { PaginationModel, PostModel } from '@kafein/data';
 import { WallFacadeService } from '@kafein/services';
 
 @Component({
@@ -8,12 +9,12 @@ import { WallFacadeService } from '@kafein/services';
   styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit {
-  posts: Array<PostModel>;
+  posts: PaginationModel<Array<PostModel>>;
 
-  constructor(private wallFacadeService: WallFacadeService) {
+  constructor(private wallFacadeService: WallFacadeService, private httpClient: HttpClient) {
   }
 
   ngOnInit() {
-    this.wallFacadeService.allPosts().subscribe(allPosts => this.posts = allPosts);
+    this.wallFacadeService.allPostsPageable().subscribe(allPosts => this.posts = allPosts);
   }
 }

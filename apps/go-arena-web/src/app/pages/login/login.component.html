@@ -6,27 +6,24 @@
   <form (ngSubmit)='login()' [formGroup]='loginFormGroup' class='login-form' nz-form>
     <nz-form-item>
       <nz-form-control nzErrorTip='Please input your username!'>
-        <nz-input-group nzPrefixIcon='user'>
-          <input formControlName='username' nz-input placeholder='Username' type='text' />
+        <nz-input-group nzSize='large' nzPrefixIcon='user'>
+          <input formControlName='username' nz-input nzSize="large"  placeholder='Username' type='text' />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control nzErrorTip='Please input your Password!'>
-        <nz-input-group nzPrefixIcon='lock'>
-          <input formControlName='password' nz-input placeholder='Password' type='password' />
+        <nz-input-group nzSize='large' nzPrefixIcon='lock' [nzSuffix]="suffixTemplate">
+          <input formControlName='password' nz-input nzSize="large"  placeholder='Password' [type]="passwordVisible ? 'text' : 'password'" />
         </nz-input-group>
+        <ng-template #suffixTemplate>
+          <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
     <div class='mb-3 text-center' nz-row>
       <a class='ant-btn-link m-auto'>Forgot password</a>
     </div>
-    <button nzType='primary' class='w-100 mb-4' nz-button>Log in</button>
+    <button nzType='primary' nzSize='large' class='w-100 mb-4' nz-button>Log in</button>
   </form>
-</div>
-
-
-<div>
-  Text: <p>{{post.text}}</p>
-  User: <p>{{post.user.name}}</p>
 </div>

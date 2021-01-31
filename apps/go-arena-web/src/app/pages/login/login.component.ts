@@ -10,6 +10,8 @@ import { LocalStorageUtils } from '@kafein/utils';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  passwordVisible = false;
+
   loginFormGroup: FormGroup = new FormGroup({
     username: new FormControl('admin', { validators: [Validators.required] }),
     password: new FormControl('1234', { validators: [Validators.required] }),

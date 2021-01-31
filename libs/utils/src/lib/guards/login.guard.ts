@@ -11,7 +11,7 @@ export class LoginGuard implements CanActivate {
     // If user already has token, navigate to dashboard.
     const accessToken = LocalStorageUtils.getAccessToken();
     if (accessToken) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/']);
       return false;
     }
     return true;

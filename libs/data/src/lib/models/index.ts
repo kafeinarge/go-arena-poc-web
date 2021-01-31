@@ -7,5 +7,5 @@ export * from './user/user.model';
 
 export * from './base.model';
 
-export * from './pagination.model';
+export * from './other';
 export { ApprovalEnum } from '../enums/approval.enum';

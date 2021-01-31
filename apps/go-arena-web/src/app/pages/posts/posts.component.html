@@ -1,4 +1,7 @@
-POSTS
-<div *ngIf='posts?.length'>
-  <kafein-post *ngFor='let post of posts' [post]='post'></kafein-post>
+<div class='row'>
+  <kafein-post
+    *ngFor='let post of posts?.content' [post]='post'
+    class='ant-col-xl-6 ant-col-lg-8 ant-col-md-12 ant-col-sm-24'
+  ></kafein-post>
 </div>
+

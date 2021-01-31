@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PostModel } from '@kafein/data';
+import { PaginationModel, PostModel } from '@kafein/data';
 import { Observable } from 'rxjs';
 import { WallApiService } from './wall-api.service';
 
@@ -8,8 +8,8 @@ export class WallFacadeService {
   constructor(private wallApiService: WallApiService) {
   }
 
-  allPosts(): Observable<Array<PostModel>> {
-    return this.wallApiService.allPosts();
+  allPostsPageable(): Observable<PaginationModel<Array<PostModel>>> {
+    return this.wallApiService.allPostsPageable();
   }
 
   deleteOnePost(productId: string): Observable<null> {
