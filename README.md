@@ -1,98 +1,32 @@
-# Kafein
+# Turkcell Go Arena POC
 
-This project was generated using [Nx](https://nx.dev).
+POC project of Türkcell's Go Arena Backoffice .\
+\
+For the use of Go Arena Sales Management Team and dealer employees. With the Go Arena application, you can easily
+monitor and manage your daily operational transactions.
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+### What you'll need
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+- [Nodejs](https://nodejs.org/)
+- [Docker](https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux)
 
-## Quick Start & Documentation
+# How To Build and Run
 
-[Nx Documentation](https://nx.dev/angular)
+## 1 - On A Docker Container
 
-[10-minute video showing allPosts Nx features](https://nx.dev/angular/getting-started/what-is-nx)
+Just run the given deploy script  \
+`./deploy.sh`\
+It'll build angular application with production configuration and sends to requests to cloud server.
 
-[Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
+`./deploy-local.sh`\
+It'll build angular application with production configuration and sends to requests to localhost.
 
-## Adding capabilities to your workspace
+## 2 - Standalone
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+Start application with Angular CLI\
+`ng serve`  
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
 
-Below are our core plugins:
+# Ports
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
-
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
-
-## Generate an application
-
-Run `ng g @nrwl/angular:app my-app` to generate an application.
-
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are sharable across libraries and applications. They can be imported from `@kafein/mylib`.
-
-## Development server
-
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng g component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
-
-## ☁ Nx Cloud
-
-### Computation Memoization in the Cloud
-
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+#### Default port is `4200`
