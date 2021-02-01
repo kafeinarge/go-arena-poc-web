@@ -4,7 +4,8 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps --ignore-scripts
 COPY . .
-RUN npm run nx -- build go-arena-web --prod
+ARG configuration
+RUN npm run nx -- build go-arena-web -c ${configuration}
 
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
