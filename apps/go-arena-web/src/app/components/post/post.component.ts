@@ -34,8 +34,8 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this.size = (Math.random() * (2000 - 1000) + 1000).toFixed(0);
-    // this.fallbackImage = environment.mockImageSourceUrl + this.size;
-    this.fallbackImage = environment.fallbackImage;
+    this.fallbackImage = environment.mockImageSourceUrl + this.size;
+    // this.fallbackImage = environment.fallbackImage;
   }
 
   imagePreview(image: string) {
