@@ -6,3 +6,10 @@
 nz-button-group [nz-button] {
   margin-right: 0;
 }
+
+::ng-deep .ant-card-meta-description {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 200px !important;
+  justify-content: space-between !important;
+}

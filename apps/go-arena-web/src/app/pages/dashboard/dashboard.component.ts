@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { AuthService } from '@kafein/services';
 
 @Component({
@@ -6,12 +6,16 @@ import { AuthService } from '@kafein/services';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements AfterViewInit {
 
-  isCollapsed = false;
+  isCollapsed = true;
   username = 'Admin';
 
   constructor(public authService: AuthService) {
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => this.isCollapsed = true);
   }
 
   logout(): void {

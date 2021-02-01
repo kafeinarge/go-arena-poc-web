@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ApprovalEnum, PostModel } from '@kafein/data';
 import { WallFacadeService } from '@kafein/services';
 import { NzImage, NzImageService } from 'ng-zorro-antd/image';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { environment } from '../../../environments/environment';
 import { ApproveButtonType } from './models/approve-button-type';
@@ -17,7 +18,7 @@ export class PostComponent implements OnInit {
   ApprovalEnum = ApprovalEnum;
   size: string;
   fallbackImage: string;
-  showApprovalButtons = true;
+  showApprovalButtons = false;
 
   @Input() post: PostModel;
   @Input() approveButtonType = ApproveButtonType.TEXT;
@@ -27,12 +28,14 @@ export class PostComponent implements OnInit {
     private domSanitizer: DomSanitizer,
     private wallFacadeService: WallFacadeService,
     private notification: NzNotificationService,
+    private modal: NzModalService,
   ) {
   }
 
   ngOnInit(): void {
     this.size = (Math.random() * (2000 - 1000) + 1000).toFixed(0);
-    this.fallbackImage = environment.mockImageSourceUrl + this.size;
+    // this.fallbackImage = environment.mockImageSourceUrl + this.size;
+    this.fallbackImage = environment.fallbackImage;
   }
 
   imagePreview(image: string) {
@@ -41,6 +44,23 @@ export class PostComponent implements OnInit {
       width: '40vw',
     };
     this.nzImageService.preview([nzImage]);
+  }
+
+  showConfirm(postId: string, approvalType: ApprovalEnum): void {
+    const title = approvalType === ApprovalEnum.APPROVED ?
+      'Are you sure to <b style="color: #0f77ff;">approve</b> this post?' :
+      'Are you sure to <b style="color: red;">decline</b> this post?';
+
+    const danger = approvalType === ApprovalEnum.DECLINED;
+
+    this.modal.confirm({
+      nzTitle: title,
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOkDanger: danger,
+      nzOnOk: () => this.sendApprovalRequest(postId, approvalType),
+      nzCancelText: 'No',
+    });
   }
 
   sendApprovalRequest(postId: string, approvalType: ApprovalEnum): void {
