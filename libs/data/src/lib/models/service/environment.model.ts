@@ -1,4 +1,6 @@
 export interface Environment {
-  production: boolean;
-  baseApiUrl: string;
+  production?: boolean;
+  baseApiUrl?: string;
+  mockImageSourceUrl?: string,
+  fallbackImage?: string;
 }
