@@ -18,6 +18,10 @@ export class PostsComponent implements OnInit {
   }
 
   pageIndexChange(pageNumber: number): void {
-    this.wallFacadeService.allPostsPageable(pageNumber).subscribe(allPosts => this.posts = allPosts);
+    this.wallFacadeService.allPostsPageable(pageNumber, null).subscribe(allPosts => this.posts = allPosts);
+  }
+
+  pageSizeChange(pageSize: number): void {
+    this.wallFacadeService.allPostsPageable(null, pageSize).subscribe(allPosts => this.posts = allPosts);
   }
 }

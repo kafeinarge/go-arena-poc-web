@@ -8,9 +8,12 @@ export class WallFacadeService {
   constructor(private wallApiService: WallApiService) {
   }
 
-  allPostsPageable(pageNumber?: number): Observable<PaginationModel<Array<PostModel>>> {
+  allPostsPageable(pageNumber?: number, pageSize?: number): Observable<PaginationModel<Array<PostModel>>> {
     if (pageNumber) {
       this.wallApiService.pageNo = pageNumber - 1;
+    }
+    if (pageSize) {
+      this.wallApiService.pageSize = pageSize;
     }
 
     return this.wallApiService.allPostsPageable();
