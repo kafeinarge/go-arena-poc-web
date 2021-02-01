@@ -19,6 +19,7 @@ export class PostComponent implements OnInit {
   size: string;
   fallbackImage: string;
   showApprovalButtons = false;
+  disableApprovalButtons = true;
 
   @Input() post: PostModel;
   @Input() approveButtonType = ApproveButtonType.TEXT;
@@ -67,7 +68,7 @@ export class PostComponent implements OnInit {
     this.wallFacadeService.postApproval(postId, approvalType).subscribe(
       () => {
         this.notification.success(`Post ${ approvalType.toLocaleLowerCase() } successfully`, null);
-        this.showApprovalButtons = false;
+        this.disableApprovalButtons = false;
       },
     );
   }
