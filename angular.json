@@ -59,11 +59,11 @@
                 }
               ]
             },
-            "production-local": {
+            "production-localhost": {
               "fileReplacements": [
                 {
                   "replace": "apps/go-arena-web/src/environments/environment.ts",
-                  "with": "apps/go-arena-web/src/environments/environment.prod-local.ts"
+                  "with": "apps/go-arena-web/src/environments/environment.prod-localhost.ts"
                 }
               ],
               "optimization": true,

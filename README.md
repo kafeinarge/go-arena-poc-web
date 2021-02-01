@@ -18,7 +18,7 @@ Just run the given deploy script  \
 `./deploy.sh`\
 It'll build angular application with production configuration and sends to requests to cloud server.
 
-`./deploy-local.sh`\
+`./deploy-localhost.sh`\
 It'll build angular application with production configuration and sends to requests to localhost.
 
 ## 2 - Standalone
