@@ -5,13 +5,15 @@
 </nz-card>
 
 <ng-template #coverTemplate>
-  <img (click)='imagePreview(post.preview)' [nzFallback]='fallbackImage' [nzSrc]='post?.preview' alt='post-image' nz-image />
+  <img style="max-height: 220px;width: 100%;object-fit: cover;"
+       [nzFallback]='fallbackImage' [nzSrc]="post.preview" alt='post-image' nz-image/>
 </ng-template>
 
 <ng-template #descriptionTemplate>
   <p>{{post.text || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pretium lacus et lectus ultricies, eu egestas tellus elementum. Integer at mi sit amet tortor dictum vehicula. ' | nzEllipsis: 140:'...'}}</p>
   <div *ngIf="disableApprovalButtons && showApprovalButtons" class='d-flex justify-content-around'>
-    <ng-container *ngIf='approveButtonType === ApproveButtonType.ICON; then iconApproveButtons else textApproveButtons'></ng-container>
+    <ng-container
+      *ngIf='approveButtonType === ApproveButtonType.ICON; then iconApproveButtons else textApproveButtons'></ng-container>
   </div>
   <p class="text-center" *ngIf="!disableApprovalButtons">Approval Submitted</p>
 </ng-template>
