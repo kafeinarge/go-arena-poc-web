@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { UserModel } from '@kafein/data';
 import { Observable } from 'rxjs';
 import { BaseService } from '../base.service';
+import { LocalStorageUtils, parseJwt } from '@kafein/utils';
+import { JwtTokenModel } from '@kafein/services';
 
 @Injectable()
 export class UserApiService extends BaseService {
@@ -11,10 +13,14 @@ export class UserApiService extends BaseService {
   }
 
   getServiceName(): string {
-    return 'user';
+    return 'user-service';
   }
 
+
   getCurrentUser(): Observable<UserModel> {
-    return this.get<UserModel>();
+    const parsedJwt: JwtTokenModel = parseJwt(LocalStorageUtils.getAccessToken());
+    console.log(parsedJwt);
+
+    return this.get<UserModel>('username/' + parsedJwt.sub);
   }
 }

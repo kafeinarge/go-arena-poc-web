@@ -4,7 +4,7 @@ import en from '@angular/common/locales/en';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthModule, KafeinApiModule, WallModule } from '@kafein/services';
+import {AuthModule, KafeinApiModule, UserModule, WallModule} from '@kafein/services';
 import { AuthGuard, LoaderInterceptor, LoginGuard, TokenExpiredInterceptor } from '@kafein/utils';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -29,6 +29,7 @@ registerLocaleData(en);
     CommonModule,
     BrowserModule,
     WallModule,
+    UserModule,
     AuthModule,
     BrowserAnimationsModule,
     AppRoutingModule,
